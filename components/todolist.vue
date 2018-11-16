@@ -1,6 +1,7 @@
 <template>
     <div class="lista">
         <h3>{{lista.id + ". " + lista.nome}}</h3>
+        <button @click="removerLista(lista.id)">X</button>
         <ul>
             <li v-for="item in lista.itens" :key="item.id">
                 {{item.id + ". " + item.descricao}}
@@ -32,6 +33,10 @@ export default {
 
         removerItem(listaId, itemId) {
             this.$store.commit("removerItem", { listaId, itemId });
+        },
+
+        removerLista(listaId) {
+            this.$emit("removerLista", listaId);
         }
     }
 };

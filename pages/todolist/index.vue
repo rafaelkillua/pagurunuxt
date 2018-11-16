@@ -4,7 +4,12 @@
             <input placeholder="Nome da Lista" v-model="nomeLista">
             <button @click="adicionarLista">Adicionar Lista</button>
         </div>
-        <todo-list v-for="lista in listas" :key="lista.id" :lista="lista"/>
+        <todo-list
+            v-for="lista in listas"
+            :key="lista.id"
+            :lista="lista"
+            @removerLista="removerLista"
+        />
     </div>
 </template>
 
@@ -29,6 +34,10 @@ export default {
         adicionarLista() {
             this.$store.commit("adicionarLista", this.nomeLista);
             this.nomeLista = "";
+        },
+
+        removerLista(listaId) {
+            this.$store.commit("removerLista", listaId);
         }
     }
 };

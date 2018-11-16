@@ -28,6 +28,13 @@ export default () =>
                     nome: nomeLista,
                     itens: []
                 });
+            },
+
+            removerLista: (state, listaId) => {
+                const pos = state.listas.findIndex(
+                    lista => lista.id === listaId
+                );
+                state.listas.splice(pos, 1);
             }
         },
 

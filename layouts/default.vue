@@ -39,4 +39,9 @@ html {
 a {
     text-decoration: none;
 }
+
+.lista {
+    border: 1px solid;
+    padding: 20px;
+}
 </style>

@@ -3,30 +3,35 @@ import Vuex from "vuex";
 export default () =>
     new Vuex.Store({
         state: () => ({
-            lista: {
-                id: 1,
-                nome: "Lazer",
-                itens: []
-            }
+            listas: []
         }),
 
         mutations: {
-            adicionarItem: (state, item) =>
-                state.lista.itens.push({
-                    id: state.lista.itens.length + 1,
-                    descricao: item,
+            adicionarItem: (state, { novoItem, listaId }) => {
+                const lista = state.listas.find(lista => lista.id === listaId);
+                lista.itens.push({
+                    id: lista.itens.length + 1,
+                    descricao: novoItem,
                     status: false
-                }),
+                });
+            },
 
-            removerItem: (state, itemId) => {
-                const pos = state.lista.itens.findIndex(
-                    item => item.id === itemId
-                );
-                state.lista.itens.splice(pos, 1);
+            removerItem: (state, { listaId, itemId }) => {
+                const lista = state.listas.find(lista => lista.id === listaId);
+                const pos = lista.itens.findIndex(item => item.id === itemId);
+                lista.itens.splice(pos, 1);
+            },
+
+            adicionarLista: (state, nomeLista) => {
+                state.listas.push({
+                    id: state.listas.length + 1,
+                    nome: nomeLista,
+                    itens: []
+                });
             }
         },
 
         getters: {
-            getLista: state => state.lista
+            getListas: state => state.listas
         }
     });

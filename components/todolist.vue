@@ -1,15 +1,15 @@
 <template>
-    <div>
+    <div class="lista">
         <h3>{{lista.id + ". " + lista.nome}}</h3>
         <ul>
             <li v-for="item in lista.itens" :key="item.id">
                 {{item.id + ". " + item.descricao}}
                 <input type="checkbox" v-model="item.status">
-                <button @click="removerItem(item.id)">X</button>
+                <button @click="removerItem(lista.id, item.id)">X</button>
             </li>
         </ul>
         <input placeholder="Descrição" v-model="novoItem">
-        <button @click="adicionarItem">Adicionar</button>
+        <button @click="adicionarItem(lista.id)">Adicionar</button>
     </div>
 </template>
 
@@ -22,13 +22,16 @@ export default {
     }),
 
     methods: {
-        adicionarItem() {
-            this.$store.commit("adicionarItem", this.novoItem);
+        adicionarItem(listaId) {
+            this.$store.commit("adicionarItem", {
+                novoItem: this.novoItem,
+                listaId
+            });
             this.novoItem = "";
         },
 
-        removerItem(itemId) {
-            this.$store.commit("removerItem", itemId);
+        removerItem(listaId, itemId) {
+            this.$store.commit("removerItem", { listaId, itemId });
         }
     }
 };

@@ -1,6 +1,10 @@
 <template>
     <div>
-        <todo-list :lista="lista"/>
+        <div class="lista">
+            <input placeholder="Nome da Lista" v-model="nomeLista">
+            <button @click="adicionarLista">Adicionar Lista</button>
+        </div>
+        <todo-list v-for="lista in listas" :key="lista.id" :lista="lista"/>
     </div>
 </template>
 
@@ -11,9 +15,20 @@ export default {
         TodoList
     },
 
+    data: () => ({
+        nomeLista: ""
+    }),
+
     computed: {
-        lista() {
-            return this.$store.getters.getLista;
+        listas() {
+            return this.$store.getters.getListas;
+        }
+    },
+
+    methods: {
+        adicionarLista() {
+            this.$store.commit("adicionarLista", this.nomeLista);
+            this.nomeLista = "";
         }
     }
 };

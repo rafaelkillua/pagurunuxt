@@ -1,6 +1,13 @@
 <template>
-    <div class="container">
-        <nuxt/>
+    <div>
+        <nav class="nav">
+            <nuxt-link to="/">Início</nuxt-link>|
+            <nuxt-link to="/todolist">TODO List</nuxt-link>|
+            <nuxt-link to="/sobre">Sobre</nuxt-link>
+        </nav>
+        <div class="container">
+            <nuxt/>
+        </div>
     </div>
 </template>
 
@@ -22,5 +29,14 @@ html {
     justify-content: center;
     align-items: center;
     text-align: center;
+}
+
+.nav {
+    text-align: center;
+    margin: 30px;
+}
+
+a {
+    text-decoration: none;
 }
 </style>

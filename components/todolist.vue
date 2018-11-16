@@ -5,6 +5,7 @@
             <li v-for="item in lista.itens" :key="item.id">
                 {{item.id + ". " + item.descricao}}
                 <input type="checkbox" v-model="item.status">
+                <button @click="removerItem(item.id)">X</button>
             </li>
         </ul>
         <input placeholder="Descrição" v-model="novoItem">
@@ -24,6 +25,10 @@ export default {
         adicionarItem() {
             this.$store.commit("adicionarItem", this.novoItem);
             this.novoItem = "";
+        },
+
+        removerItem(itemId) {
+            this.$store.commit("removerItem", itemId);
         }
     }
 };

@@ -16,7 +16,14 @@ export default () =>
                     id: state.lista.itens.length + 1,
                     descricao: item,
                     status: false
-                })
+                }),
+
+            removerItem: (state, itemId) => {
+                const pos = state.lista.itens.findIndex(
+                    item => item.id === itemId
+                );
+                state.lista.itens.splice(pos, 1);
+            }
         },
 
         getters: {

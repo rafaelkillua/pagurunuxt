@@ -24,7 +24,7 @@ export default {
 
     methods: {
         adicionarItem(listaId) {
-            this.$store.commit("adicionarItem", {
+            this.$store.dispatch("adicionarItem", {
                 novoItem: this.novoItem,
                 listaId
             });
@@ -32,7 +32,7 @@ export default {
         },
 
         removerItem(listaId, itemId) {
-            this.$store.commit("removerItem", { listaId, itemId });
+            this.$store.dispatch("removerItem", { listaId, itemId });
         },
 
         removerLista(listaId) {

@@ -24,6 +24,10 @@ export default {
         nomeLista: ""
     }),
 
+    mounted() {
+        this.$store.dispatch("iniciarApp");
+    },
+
     computed: {
         listas() {
             return this.$store.getters.getListas;
@@ -32,12 +36,12 @@ export default {
 
     methods: {
         adicionarLista() {
-            this.$store.commit("adicionarLista", this.nomeLista);
+            this.$store.dispatch("adicionarLista", this.nomeLista);
             this.nomeLista = "";
         },
 
         removerLista(listaId) {
-            this.$store.commit("removerLista", listaId);
+            this.$store.dispatch("removerLista", listaId);
         }
     }
 };

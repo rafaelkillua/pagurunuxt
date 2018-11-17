@@ -18,5 +18,6 @@ export const auth = firebase.auth();
 export default context => {
     firebase.auth().onAuthStateChanged(user => {
         if (user) context.store.commit("setUser", user);
+        else context.store.commit("setUser", null);
     });
 };

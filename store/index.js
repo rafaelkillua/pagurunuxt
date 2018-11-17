@@ -79,6 +79,15 @@ export default () =>
                         console.error(erro);
                     }
                 );
+            },
+
+            logar: (context, { email, password }) => {
+                auth.signInWithEmailAndPassword(email, password).catch(erro => {
+                    console.error(erro);
+                });
+            },
+            deslogar: context => {
+                auth.signOut();
             }
         }
     });

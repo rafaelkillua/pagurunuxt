@@ -4,6 +4,8 @@
             <nuxt-link to="/">Início</nuxt-link>|
             <nuxt-link to="/todolist">TODO List</nuxt-link>|
             <nuxt-link to="/cadastro">Cadastro</nuxt-link>|
+            <nuxt-link to="/login">Login</nuxt-link>|
+            <a href="#" @click="deslogar">Logout</a>|
             <nuxt-link to="/sobre">Sobre</nuxt-link>
         </nav>
         <div class="container">
@@ -11,6 +13,17 @@
         </div>
     </div>
 </template>
+
+<script>
+export default {
+    methods: {
+        deslogar() {
+            this.$store.dispatch("deslogar");
+        }
+    }
+};
+</script>
+
 
 <style>
 html {

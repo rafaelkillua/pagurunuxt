@@ -1,8 +1,29 @@
 <template>
-    <div class="container">
-        <nuxt/>
+    <div>
+        <nav class="nav">
+            <nuxt-link to="/">Início</nuxt-link>|
+            <nuxt-link to="/todolist">TODO List</nuxt-link>|
+            <nuxt-link to="/cadastro">Cadastro</nuxt-link>|
+            <nuxt-link to="/login">Login</nuxt-link>|
+            <a href="#" @click="deslogar">Logout</a>|
+            <nuxt-link to="/sobre">Sobre</nuxt-link>
+        </nav>
+        <div class="container">
+            <nuxt/>
+        </div>
     </div>
 </template>
+
+<script>
+export default {
+    methods: {
+        deslogar() {
+            this.$store.dispatch("deslogar");
+        }
+    }
+};
+</script>
+
 
 <style>
 html {
@@ -22,5 +43,19 @@ html {
     justify-content: center;
     align-items: center;
     text-align: center;
+}
+
+.nav {
+    text-align: center;
+    margin: 30px;
+}
+
+a {
+    text-decoration: none;
+}
+
+.lista {
+    border: 1px solid;
+    padding: 20px;
 }
 </style>

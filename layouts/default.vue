@@ -3,6 +3,7 @@
         <nav class="nav">
             <nuxt-link to="/">Início</nuxt-link>|
             <nuxt-link to="/todolist">TODO List</nuxt-link>|
+            <nuxt-link to="/cadastro">Cadastro</nuxt-link>|
             <nuxt-link to="/sobre">Sobre</nuxt-link>
         </nav>
         <div class="container">

@@ -1,20 +1,26 @@
 import Vuex from "vuex";
-import { database } from "~/plugins/firebase";
+import { database, auth } from "~/plugins/firebase";
 
 export default () =>
     new Vuex.Store({
         state: () => ({
-            listas: []
+            listas: [],
+            user: null
         }),
 
         mutations: {
             setListas: (state, listas) => {
                 state.listas = listas;
+            },
+
+            setUser: (state, user) => {
+                state.user = user;
             }
         },
 
         getters: {
-            getListas: state => state.listas
+            getListas: state => state.listas,
+            getUser: state => state.user
         },
 
         actions: {
@@ -65,6 +71,14 @@ export default () =>
                 const pos = lista.itens.findIndex(item => item.id === itemId);
                 lista.itens.splice(pos, 1);
                 database.ref("listas/" + listaId).update(lista);
+            },
+
+            cadastrar: (context, { nome, email, password }) => {
+                auth.createUserWithEmailAndPassword(email, password).catch(
+                    erro => {
+                        console.error(erro);
+                    }
+                );
             }
         }
     });
